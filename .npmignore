@@ -1,12 +1,7 @@
 *.log
-/Makefile
-/deps
 /test
-/tools
-/.gitmodules
 /.npmignore
+/.nyc_output
 /.eslintrc
-/.travis.yml
 /CONTRIBUTING.md
-/build
 /coverage
