@@ -15,17 +15,18 @@
   },
   "main": "lib/index.js",
   "dependencies": {
-    "safer-buffer": "~2.1.0"
+    "safer-buffer": "~2.1.2"
   },
   "devDependencies": {
-    "istanbul": "^0.3.6",
-    "faucet": "0.0.1",
-    "tape": "^3.5.0",
-    "eslint": "2.13.1",
-    "eslint-plugin-joyent": "~1.3.0"
+    "tape": "^5.0.1",
+    "eslint": "^7.1.0",
+    "eslint-plugin-joyent": "^2.1.0",
+    "nyc": "^15.1.0",
+    "tap-nyc": "^1.0.3"
   },
   "scripts": {
     "test": "tape ./test/ber/*.test.js",
+    "cover": "nyc tape test/run.js | tap-nyc",
     "lint": "eslint ."
   },
   "license": "MIT"
