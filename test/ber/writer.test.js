@@ -321,9 +321,9 @@ test('LDAP bind message', function (t) {
   var dn = 'cn=foo,ou=unit,o=test';
   var writer = new BerWriter();
   writer.startSequence();
-  writer.writeInt(3);             // msgid = 3
-  writer.startSequence(0x60);     // ldap bind
-  writer.writeInt(3);             // ldap v3
+  writer.writeInt(3); // msgid = 3
+  writer.startSequence(0x60); // ldap bind
+  writer.writeInt(3); // ldap v3
   writer.writeString(dn);
   writer.writeByte(0x80);
   writer.writeByte(0x00);
