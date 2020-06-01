@@ -1,18 +1,17 @@
 // Copyright 2011 Mark Cavage <mcavage@gmail.com> All rights reserved.
 
-var test = require('tap').test;
-var sys = require('sys');
+var test = require('tape');
+var Buffer = require('safer-buffer').Buffer;
 
-///--- Globals
+// --- Globals
 
 var BerWriter;
 
-var BerReader;
 
 
-///--- Tests
+// --- Tests
 
-test('load library', function(t) {
+test('load library', function (t) {
   BerWriter = require('../../lib/index').BerWriter;
   t.ok(BerWriter);
   t.ok(new BerWriter());
@@ -20,7 +19,7 @@ test('load library', function(t) {
 });
 
 
-test('write byte', function(t) {
+test('write byte', function (t) {
   var writer = new BerWriter();
 
   writer.writeByte(0xC2);
@@ -34,7 +33,7 @@ test('write byte', function(t) {
 });
 
 
-test('write 1 byte int', function(t) {
+test('write 1 byte int', function (t) {
   var writer = new BerWriter();
 
   writer.writeInt(0x7f);
@@ -50,7 +49,7 @@ test('write 1 byte int', function(t) {
 });
 
 
-test('write 2 byte int', function(t) {
+test('write 2 byte int', function (t) {
   var writer = new BerWriter();
 
   writer.writeInt(0x7ffe);
@@ -67,7 +66,7 @@ test('write 2 byte int', function(t) {
 });
 
 
-test('write 3 byte int', function(t) {
+test('write 3 byte int', function (t) {
   var writer = new BerWriter();
 
   writer.writeInt(0x7ffffe);
@@ -85,7 +84,7 @@ test('write 3 byte int', function(t) {
 });
 
 
-test('write 4 byte int', function(t) {
+test('write 4 byte int', function (t) {
   var writer = new BerWriter();
 
   writer.writeInt(0x7ffffffe);
@@ -105,7 +104,7 @@ test('write 4 byte int', function(t) {
 });
 
 
-test('write 1 byte negative int', function(t) {
+test('write 1 byte negative int', function (t) {
   var writer = new BerWriter();
 
   writer.writeInt(-128);
@@ -122,7 +121,7 @@ test('write 1 byte negative int', function(t) {
 });
 
 
-test('write 2 byte negative int', function(t) {
+test('write 2 byte negative int', function (t) {
   var writer = new BerWriter();
 
   writer.writeInt(-22400);
@@ -140,7 +139,7 @@ test('write 2 byte negative int', function(t) {
 });
 
 
-test('write 3 byte negative int', function(t) {
+test('write 3 byte negative int', function (t) {
   var writer = new BerWriter();
 
   writer.writeInt(-481653);
@@ -159,7 +158,7 @@ test('write 3 byte negative int', function(t) {
 });
 
 
-test('write 4 byte negative int', function(t) {
+test('write 4 byte negative int', function (t) {
   var writer = new BerWriter();
 
   writer.writeInt(-1522904131);
@@ -179,7 +178,7 @@ test('write 4 byte negative int', function(t) {
 });
 
 
-test('write boolean', function(t) {
+test('write boolean', function (t) {
   var writer = new BerWriter();
 
   writer.writeBoolean(true);
@@ -199,7 +198,7 @@ test('write boolean', function(t) {
 });
 
 
-test('write string', function(t) {
+test('write string', function (t) {
   var writer = new BerWriter();
   writer.writeString('hello world');
   var ber = writer.buffer;
@@ -213,13 +212,13 @@ test('write string', function(t) {
   t.end();
 });
 
-test('write buffer', function(t) {
+test('write buffer', function (t) {
   var writer = new BerWriter();
   // write some stuff to start with
   writer.writeString('hello world');
   var ber = writer.buffer;
-  var buf = new Buffer([0x04, 0x0b, 0x30, 0x09, 0x02, 0x01, 0x0f, 0x01, 0x01,
-     0xff, 0x01, 0x01, 0xff]);
+  var buf = Buffer.from([0x04, 0x0b, 0x30, 0x09, 0x02, 0x01, 0x0f, 0x01, 0x01,
+    0xff, 0x01, 0x01, 0xff]);
   writer.writeBuffer(buf.slice(2, buf.length), 0x04);
   ber = writer.buffer;
 
@@ -236,7 +235,7 @@ test('write buffer', function(t) {
   t.end();
 });
 
-test('write string array', function(t) {
+test('write string array', function (t) {
   var writer = new BerWriter();
   writer.writeStringArray(['hello world', 'fubar!']);
   var ber = writer.buffer;
@@ -256,7 +255,7 @@ test('write string array', function(t) {
 });
 
 
-test('resize internal buffer', function(t) {
+test('resize internal buffer', function (t) {
   var writer = new BerWriter({size: 2});
   writer.writeString('hello world');
   var ber = writer.buffer;
@@ -271,7 +270,7 @@ test('resize internal buffer', function(t) {
 });
 
 
-test('sequence', function(t) {
+test('sequence', function (t) {
   var writer = new BerWriter({size: 25});
   writer.startSequence();
   writer.writeString('hello world');
@@ -291,7 +290,7 @@ test('sequence', function(t) {
 });
 
 
-test('nested sequence', function(t) {
+test('nested sequence', function (t) {
   var writer = new BerWriter({size: 25});
   writer.startSequence();
   writer.writeString('hello world');
@@ -318,7 +317,7 @@ test('nested sequence', function(t) {
 });
 
 
-test('LDAP bind message', function(t) {
+test('LDAP bind message', function (t) {
   var dn = 'cn=foo,ou=unit,o=test';
   var writer = new BerWriter();
   writer.startSequence();
@@ -354,7 +353,7 @@ test('LDAP bind message', function(t) {
 });
 
 
-test('Write OID', function(t) {
+test('Write OID', function (t) {
   var oid = '1.2.840.113549.1.1.1';
   var writer = new BerWriter();
   writer.writeOID(oid);
@@ -362,7 +361,7 @@ test('Write OID', function(t) {
   var ber = writer.buffer;
   t.ok(ber);
   console.log(require('util').inspect(ber));
-  console.log(require('util').inspect(new Buffer([0x06, 0x09, 0x2a, 0x86,
+  console.log(require('util').inspect(Buffer.from([0x06, 0x09, 0x2a, 0x86,
                                                   0x48, 0x86, 0xf7, 0x0d,
                                                   0x01, 0x01, 0x01])));
 
