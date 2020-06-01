@@ -161,20 +161,20 @@ test('read sequence', function (t) {
 
 test('anonymous LDAPv3 bind', function (t) {
   var BIND = Buffer.alloc(14);
-  BIND[0] = 0x30;  // Sequence
-  BIND[1] = 12;    // len
-  BIND[2] = 0x02;  // ASN.1 Integer
-  BIND[3] = 1;     // len
-  BIND[4] = 0x04;  // msgid (make up 4)
-  BIND[5] = 0x60;  // Bind Request
-  BIND[6] = 7;     // len
-  BIND[7] = 0x02;  // ASN.1 Integer
-  BIND[8] = 1;     // len
-  BIND[9] = 0x03;  // v3
+  BIND[0] = 0x30; // Sequence
+  BIND[1] = 12; // len
+  BIND[2] = 0x02; // ASN.1 Integer
+  BIND[3] = 1; // len
+  BIND[4] = 0x04; // msgid (make up 4)
+  BIND[5] = 0x60; // Bind Request
+  BIND[6] = 7; // len
+  BIND[7] = 0x02; // ASN.1 Integer
+  BIND[8] = 1; // len
+  BIND[9] = 0x03; // v3
   BIND[10] = 0x04; // String (bind dn)
-  BIND[11] = 0;    // len
+  BIND[11] = 0; // len
   BIND[12] = 0x80; // ContextSpecific (choice)
-  BIND[13] = 0;    // simple bind
+  BIND[13] = 0; // simple bind
 
   // Start testing ^^
   var ber = new BerReader(BIND);
