@@ -6,12 +6,12 @@
     "Yunong Xiao <yunong@joyent.com>",
     "Alex Wilson <alex.wilson@joyent.com>"
   ],
-  "name": "asn1",
+  "name": "@ldapjs/asn1",
   "description": "Contains parsers and serializers for ASN.1 (currently BER only)",
-  "version": "0.2.4",
+  "version": "1.0.0-rc.1",
   "repository": {
     "type": "git",
-    "url": "git://github.com/joyent/node-asn1.git"
+    "url": "git://github.com/ldapjs/asn1.git"
   },
   "main": "lib/index.js",
   "devDependencies": {
