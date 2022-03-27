@@ -6,43 +6,5 @@ on:
       - master
 
 jobs:
-
-  Test:
-    if: "!contains(github.event.head_commit.message, '[skip ci]')"
-    strategy:
-      matrix:
-        node_version: ['lts/*', node]
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v2
-      - name: Install Node
-        uses: dcodeIO/setup-node-nvm@master
-        with:
-          node-version: ${{ matrix.node_version }}
-      - name: Install Dependencies
-        run: npm install
-      - name: Run Tests 👩🏽‍💻
-        run: npm run test
-
-  Lint:
-    if: "!contains(github.event.head_commit.message, '[skip ci]')"
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v2
-      - name: Install Node
-        uses: dcodeIO/setup-node-nvm@master
-        with:
-          node-version: 'lts/*'
-      - name: Install Dependencies
-        run: npm install
-      - name: Lint ✨
-        run: npm run lint
-
-  Skip:
-    if: contains(github.event.head_commit.message, '[skip ci]')
-    runs-on: ubuntu-latest
-    steps:
-      - name: Skip CI 🚫
-        run: echo skip ci
+  call-core-ci:
+    uses: ldapjs/.github/.github/workflows/node-ci.yml@main

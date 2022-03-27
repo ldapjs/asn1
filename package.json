@@ -1,33 +1,34 @@
 {
-  "author": "Joyent (joyent.com)",
+  "originalAuthor": "Joyent (joyent.com)",
   "contributors": [
     "Mark Cavage <mcavage@gmail.com>",
     "David Gwynne <loki@animata.net>",
     "Yunong Xiao <yunong@joyent.com>",
     "Alex Wilson <alex.wilson@joyent.com>"
   ],
-  "name": "asn1",
+  "name": "@ldapjs/asn1",
   "description": "Contains parsers and serializers for ASN.1 (currently BER only)",
-  "version": "0.2.4",
+  "version": "1.0.0",
   "repository": {
     "type": "git",
-    "url": "git://github.com/joyent/node-asn1.git"
+    "url": "git://github.com/ldapjs/asn1.git"
   },
   "main": "lib/index.js",
-  "dependencies": {
-    "safer-buffer": "~2.1.2"
-  },
   "devDependencies": {
-    "tape": "^5.0.1",
-    "eslint": "^7.1.0",
-    "eslint-plugin-joyent": "^2.1.0",
-    "nyc": "^15.1.0",
-    "tap-nyc": "^1.0.3"
+    "@fastify/pre-commit": "^2.0.2",
+    "standard": "^16.0.4",
+    "tap": "^16.0.1"
   },
   "scripts": {
-    "test": "tape ./test/ber/*.test.js",
-    "cover": "nyc tape test/run.js | tap-nyc",
-    "lint": "eslint ."
+    "test": "tap --no-coverage-report -R terse",
+    "test:cov": "tap -R terse",
+    "test:cov:html": "tap -R terse --coverage-report=html",
+    "test:watch": "tap -w --no-coverage-report -R terse",
+    "lint": "standard"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "pre-commit": [
+    "lint",
+    "test"
+  ]
 }
