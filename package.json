@@ -21,6 +21,7 @@
   },
   "scripts": {
     "test": "tap",
+    "test:watch": "tap -w --no-coverage-report -R terse",
     "lint": "standard"
   },
   "license": "MIT",
