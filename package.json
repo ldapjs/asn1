@@ -20,7 +20,9 @@
     "tap": "^16.0.1"
   },
   "scripts": {
-    "test": "tap",
+    "test": "tap --no-coverage-report -R terse",
+    "test:cov": "tap -R terse",
+    "test:cov:html": "tap -R terse --coverage-report=html",
     "test:watch": "tap -w --no-coverage-report -R terse",
     "lint": "standard"
   },
