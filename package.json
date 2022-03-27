@@ -18,16 +18,17 @@
     "safer-buffer": "~2.1.2"
   },
   "devDependencies": {
-    "tape": "^5.0.1",
-    "eslint": "^7.1.0",
-    "eslint-plugin-joyent": "^2.1.0",
-    "nyc": "^15.1.0",
-    "tap-nyc": "^1.0.3"
+    "@fastify/pre-commit": "^2.0.2",
+    "standard": "^16.0.4",
+    "tap": "^16.0.1"
   },
   "scripts": {
-    "test": "tape ./test/ber/*.test.js",
-    "cover": "nyc tape test/run.js | tap-nyc",
-    "lint": "eslint ."
+    "test": "tap",
+    "lint": "standard"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "pre-commit": [
+    "lint",
+    "test"
+  ]
 }
