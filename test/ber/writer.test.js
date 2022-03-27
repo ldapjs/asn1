@@ -1,7 +1,6 @@
 // Copyright 2011 Mark Cavage <mcavage@gmail.com> All rights reserved.
 
 const { test } = require('tap')
-const Buffer = require('safer-buffer').Buffer
 
 // --- Globals
 
