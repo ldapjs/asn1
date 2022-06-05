@@ -8,7 +8,7 @@
   ],
   "name": "@ldapjs/asn1",
   "description": "Contains parsers and serializers for ASN.1 (currently BER only)",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "repository": {
     "type": "git",
     "url": "git://github.com/ldapjs/asn1.git"
