@@ -8,23 +8,29 @@
   ],
   "name": "@ldapjs/asn1",
   "description": "Contains parsers and serializers for ASN.1 (currently BER only)",
-  "version": "1.2.0",
+  "version": "2.0.0-rc.1",
   "repository": {
     "type": "git",
     "url": "git://github.com/ldapjs/asn1.git"
   },
-  "main": "lib/index.js",
+  "main": "index.js",
   "devDependencies": {
     "@fastify/pre-commit": "^2.0.2",
-    "standard": "^16.0.4",
-    "tap": "^16.0.1"
+    "eslint": "^8.25.0",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-n": "^15.3.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^6.0.1",
+    "tap": "^16.3.0"
   },
   "scripts": {
-    "test": "tap --no-coverage-report -R terse",
-    "test:cov": "tap -R terse",
-    "test:cov:html": "tap -R terse --coverage-report=html",
-    "test:watch": "tap -w --no-coverage-report -R terse",
-    "lint": "standard"
+    "lint": "eslint .",
+    "lint:ci": "eslint .",
+    "test": "tap --no-coverage-report",
+    "test:cov": "tap",
+    "test:cov:html": "tap --coverage-report=html",
+    "test:watch": "tap -w --no-coverage-report"
   },
   "license": "MIT",
   "pre-commit": [
