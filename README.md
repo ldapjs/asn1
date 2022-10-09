@@ -7,32 +7,36 @@ JS. Currently BER encoding is supported.
 
 The following reads an ASN.1 sequence with a boolean.
 
-    var Ber = require('@ldapjs/asn1').Ber;
+```js
+const { BerReader, BerTypes } = require('@ldapjs/asn1')
+const reader = new BerReader(Buffer.from([0x30, 0x03, 0x01, 0x01, 0xff]))
 
-    var reader = new Ber.Reader(Buffer.from([0x30, 0x03, 0x01, 0x01, 0xff]));
-
-    reader.readSequence();
-    console.log('Sequence len: ' + reader.length);
-    if (reader.peek() === Ber.Boolean)
-      console.log(reader.readBoolean());
+reader.readSequence()
+console.log('Sequence len: ' + reader.length)
+if (reader.peek() === BerTypes.Boolean)
+console.log(reader.readBoolean())
+```
 
 ### Encoding
 
 The following generates the same payload as above.
 
-    var Ber = require('@ldapjs/asn1').Ber;
+```js
+const { BerWriter } = require('@ldapjs/asn1');
+const writer = new BerWriter();
 
-    var writer = new Ber.Writer();
+writer.startSequence();
+writer.writeBoolean(true);
+writer.endSequence();
 
-    writer.startSequence();
-    writer.writeBoolean(true);
-    writer.endSequence();
-
-    console.log(writer.buffer);
+console.log(writer.buffer);
+```
 
 ## Installation
 
-    npm install asn1
+```sh
+npm install @ldapjs/asn1
+```
 
 ## Bugs
 
