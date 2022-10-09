@@ -11,3 +11,12 @@ tap.test('exports BerReader', async t => {
   t.type(reader, BerReader)
   t.equal(Object.prototype.toString.call(reader), '[object BerReader]')
 })
+
+tap.test('exports BerWriter', async t => {
+  const { BerWriter } = asn1
+  t.ok(BerWriter)
+
+  const writer = new BerWriter()
+  t.type(writer, BerWriter)
+  t.equal(Object.prototype.toString.call(writer), '[object BerWriter]')
+})

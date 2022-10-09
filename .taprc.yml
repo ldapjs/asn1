@@ -1,11 +1,6 @@
 reporter: terse
 coverage-map: coverage-map.js
 
-lines: 80
-functions: 80
-branches: 70
-statements: 80
-
 files:
   - 'index.test.js'
   - 'lib/**/*.test.js'
