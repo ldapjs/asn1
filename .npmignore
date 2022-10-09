@@ -1,7 +1,0 @@
-*.log
-/test
-/.npmignore
-/.nyc_output
-/.eslintrc
-/CONTRIBUTING.md
-/coverage
